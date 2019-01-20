@@ -1,0 +1,35 @@
+<html>
+<head>
+  <title>stocks i like</title>
+</head>
+<body>
+<h1>The winners are..</h1>
+<h2>go buy more of them</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Symbol</th><th>total#shares</th><th>total value</th>
+  </tr>
+  </thead>
+
+  <tbody>
+
+  <% @results.each do |data| %>
+    <tr>
+      <td><%=data["symbol"] %></td>
+      <td><%=data["total_n_shares"]%></td>
+      <td><%=data["total_value_helds"]%></td>
+    </tr>
+  <%end %>
+  </tbody>
+
+  <form></form>
+</table>
+<form action = ""></form>
+<button type = "button">update</button>
+
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<header><%= form_tag(search_page_path, :method => "get",
+                     class: 'navbar-form navbar-left') do %>
+    <div class="input-group">
+      <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>
+      <%= button_tag "Search", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>
+      <div class="input-group-btn">
+
+      </div>
+    </div>
+  <% end %>
+</header>
+<h1>Quote Dbs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quote</th>
+      <th>Author</th>
+      <th>Category</th>
+      <th colspan="4">Operations</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @quote_dbs.each do |quote_db| %>
+      <tr>
+        <td><%= quote_db.quote %></td>
+        <td><%= quote_db.author %></td>
+        <td><%= quote_db.category %></td>
+        <td><%= link_to 'Show', quote_db %></td>
+        <td><%= link_to 'Edit', edit_quote_db_path(quote_db) %></td>
+        <td><%= link_to 'Kill', killed_path(quote_db), data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', quote_db, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+  <h3><%= link_to 'New Quote Db', new_quote_db_path %>
+    <br>
+    <%if cookies[:test]!=" "%>
+      <%= link_to 'Delete Personalization', deleted_path(@quote_dbs), data: { confirm: 'Are you sure?' } %>
+    <%end%>
+  <br>
+    <%= link_to 'Export in xml format', export_xml_path  %>
+    <br>
+    <%= link_to 'Export in json format', export_path %></h3>
+
+<%= form_with(url: "/import", method: "post", local: true) do |form| %>
+  <%= form.file_field(:q) %>
+  <%= form.submit("import") %>
+<% end %>

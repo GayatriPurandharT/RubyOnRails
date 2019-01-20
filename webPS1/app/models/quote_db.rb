@@ -1,0 +1,2 @@
+class QuoteDb < ApplicationRecord
+end

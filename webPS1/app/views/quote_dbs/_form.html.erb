@@ -1,0 +1,37 @@
+<%= form_with(model: quote_db, local: true) do |form| %>
+  <% if quote_db.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(quote_db.errors.count, "error") %> prohibited this quote_db from being saved:</h2>
+
+      <ul>
+      <% quote_db.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :quote %>
+    <%= form.text_area :quote %>
+  </div>
+
+  <div class="field">
+    <%= form.label :author %>
+    <%= form.text_field :author %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+
+    <%=form.select :category, QuoteDb.select(:category).map(&:category).uniq%>
+    <div>
+      <%= text_field_tag :category, params[:category], id: 'autocomplete', class:"newcat" ,placeholder:"New Category",value:nil ,  name:"quote_db1[category]"%>
+    </div>
+
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

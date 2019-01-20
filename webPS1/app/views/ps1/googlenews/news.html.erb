@@ -1,0 +1,42 @@
+
+<h1>Your daily news feed</h1>
+<!--<p> news </p>-->
+
+<h1><b>Headlines </b></h1>
+<% for i in 0..@n-1 %>
+  <div>
+    <ul>
+
+
+      <div>
+        <h2><b><a href=<%= @status[i]['url'] %>><%= @status[i]['title'] %></b></h2>
+        </a>
+
+
+        <%= @status[i]['description'] %>
+      </div>
+      <div>
+        <img src=<%= @status[i]['urlToImage'] %> height = '100px'>
+      </div>
+    </ul>
+  </div>
+<% end %>
+<h1><b>World News </b></h1>
+<% for j in 0..9 %>
+  <div>
+    <ul>
+
+
+      <div>
+        <h2><b><a href=<%= @status2[j]['url'] %>><%= @status2[j]['title'] %></b></h2>
+        </a>
+
+
+        <%= @status2[j]['description'] %>
+      </div>
+      <div>
+        <img src=<%= @status2[j]['urlToImage'] %> height = '100px'>
+      </div>
+    </ul>
+  </div>
+<% end %>
